@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "node -e \"try { if (process.platform === 'linux') { console.log('Installing Linux deps'); require('child_process').execSync('npm i @tailwindcss/oxide-linux-x64-gnu lightningcss-linux-x64-gnu', {stdio: 'inherit'}); } } catch (e) { console.error(e); }\""
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
