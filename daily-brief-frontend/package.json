@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "prebuild": "node -e \"try{require('fs').unlinkSync('node_modules/@next/swc-linux-x64-gnu')}catch(e){}\" && node -e \"try{require('fs').unlinkSync('node_modules/@next/swc-linux-x64-musl')}catch(e){}\"",
     "start": "next start",
     "lint": "next lint"
   },
