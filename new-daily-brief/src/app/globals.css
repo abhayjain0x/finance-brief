@@ -4,25 +4,27 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #000000;
-    --primary: #0f172a;
-    --secondary: #64748b;
-    --muted: #f8fafc;
-    --muted-foreground: #64748b;
-    --border: #e2e8f0;
-    --highlight: rgba(255, 222, 89, 0.6); /* Yellow highlight color */
+    /* Solarized Light colors */
+    --background: #fdf6e3; /* Base3 */
+    --foreground: #073642; /* Base02 */
+    --primary: #268bd2;    /* Blue */
+    --secondary: #2aa198;  /* Cyan */
+    --muted: #eee8d5;      /* Base2 */
+    --muted-foreground: #586e75; /* Base01 */
+    --border: #93a1a1;     /* Base1 */
+    --highlight: rgba(181, 137, 0, 0.4); /* Yellow with transparency */
   }
 
   [data-theme="dark"] {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-    --primary: #cbd5e1;
-    --secondary: #94a3b8;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --highlight: rgba(255, 222, 89, 0.4); /* Slightly transparent yellow for dark mode */
+    /* High Contrast Dark colors */
+    --background: #000000; /* Pure black */
+    --foreground: #ffffff; /* Pure white */
+    --primary: #56b6c2;    /* Bright cyan */
+    --secondary: #61afef;  /* Bright blue */
+    --muted: #1a1a1a;      /* Very dark gray */
+    --muted-foreground: #b3b3b3; /* Light gray */
+    --border: #4d4d4d;     /* Medium gray */
+    --highlight: rgba(255, 222, 89, 0.4); /* Yellow with transparency */
   }
 
   /* Text selection style */
