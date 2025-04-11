@@ -66,11 +66,29 @@ function markdownToHtml(markdown: string): string {
   return html;
 }
 
+// Get all available newsletter slugs
+export async function generateStaticParams() {
+  try {
+    // For the deployed site, read from the public directory
+    const dataDir = path.join(process.cwd(), 'public', 'data');
+    const files = fs.readdirSync(dataDir);
+    
+    return files
+      .filter(file => file.startsWith('newsletter_') && file.endsWith('.md'))
+      .map(file => ({
+        slug: file.replace('newsletter_', '').replace('.md', '')
+      }));
+  } catch (error) {
+    console.error('Error generating static paths:', error);
+    return [];
+  }
+}
+
 // Get newsletter data
 async function getNewsletter(slug: string) {
   try {
-    const dirPath = path.join(process.cwd(), '..', 'daily brief intelligence');
-    const filePath = path.join(dirPath, `newsletter_${slug}.md`);
+    // For the deployed site, read from the public directory
+    const filePath = path.join(process.cwd(), 'public', 'data', `newsletter_${slug}.md`);
     
     if (!fs.existsSync(filePath)) {
       return null;

@@ -6,7 +6,7 @@ import NavBar from "@/components/nav-bar";
 // Function to get all available newsletters
 async function getNewsletters() {
   try {
-    const dirPath = path.join(process.cwd(), '..', 'daily brief intelligence');
+    const dirPath = path.join(process.cwd(), 'public', 'data');
     const files = fs.readdirSync(dirPath);
     const newsletterFiles = files
       .filter(file => file.startsWith('newsletter_') && file.endsWith('.md'))
