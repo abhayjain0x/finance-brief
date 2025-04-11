@@ -19,7 +19,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://daily-markets-briefs.netlify.app"),
+  metadataBase: new URL("https://markets-brief.com"),
   title: {
     default: "Home",
     template: "%s | Markets Brief"
