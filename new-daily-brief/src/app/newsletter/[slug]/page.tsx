@@ -9,16 +9,23 @@ function markdownToHtml(markdown: string): string {
   // Remove "THE DAILY BRIEF" header
   const withoutHeader = markdown.replace(/^# THE DAILY BRIEF\s*\n/, '');
   
+  // Extract title and date - we'll handle these separately
+  const titleMatch = withoutHeader.match(/^### (.*?)(?:\n|$)/);
+  const withoutTitle = titleMatch ? withoutHeader.replace(titleMatch[0], '') : withoutHeader;
+  
+  // Process horizontal rules - ensure they're rendered as proper <hr> elements
+  let html = withoutTitle.replace(/^\s*---\s*$/gm, '<hr class="my-8 border-border" />');
+  
   // Process headings
-  let html = withoutHeader
-    .replace(/^### (.*?)$/gm, '<h3 class="text-xl font-semibold mb-4">$1</h3>')
+  html = html
     .replace(/^## (.*?)$/gm, '<h2 class="text-2xl font-semibold mb-4">$1</h2>')
+    .replace(/^### (.*?)$/gm, '<h3 class="text-xl font-semibold mb-4">$1</h3>')
     .replace(/^# (.*?)$/gm, '<h1 class="text-3xl font-bold mb-6">$1</h1>')
     .replace(/^#### (.*?)$/gm, '<h4 class="text-lg font-semibold mb-3">$1</h4>')
     .replace(/^##### (.*?)$/gm, '<h5 class="text-base font-semibold mb-2">$1</h5>');
 
   // Process paragraphs (ensure they're wrapped)
-  html = html.replace(/^(?!(#|<h|<ul|<ol|<li|<blockquote|<pre|<code|$|---))(.+)$/gm, '<p class="mb-4">$2</p>');
+  html = html.replace(/^(?!(#|<h|<ul|<ol|<li|<blockquote|<pre|<code|$|<hr))(.+)$/gm, '<p class="mb-4">$2</p>');
 
   // Process lists
   html = html.replace(/^(\s*)-\s*(.*?)$/gm, '<li class="ml-6 mb-1 list-disc">$2</li>');
@@ -54,9 +61,6 @@ function markdownToHtml(markdown: string): string {
   }
   
   html = result.join('\n');
-
-  // Process horizontal rules
-  html = html.replace(/^---$/gm, '<hr class="my-8 border-muted" />');
 
   // Process underline tags
   html = html.replace(/<u>(.*?)<\/u>/g, '<span class="underline">$1</span>');
