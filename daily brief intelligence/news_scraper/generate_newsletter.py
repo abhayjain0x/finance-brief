@@ -26,8 +26,15 @@ Adopt the persona of an exceptionally well-informed, highly analytical, and subt
 def load_news_data(filename="news.json"):
     """Load the scraped and summarized news data"""
     try:
+        # First try to load from current directory
         with open(filename, 'r', encoding='utf-8') as f:
             news_data = json.load(f)
+        
+        # Check if data has summaries
+        has_summaries = any("summary" in item for item in news_data)
+        if not has_summaries:
+            print(f"Warning: News data in {filename} does not contain summaries!")
+            
         print(f"Loaded {len(news_data)} news items from {filename}")
         return news_data
     except Exception as e:
