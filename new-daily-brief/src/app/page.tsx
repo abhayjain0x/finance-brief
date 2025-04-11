@@ -78,7 +78,7 @@ export default async function Home() {
   const newsletters = await getNewsletters();
   
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground relative">
       <NavBar />
       <div className="max-w-2xl mx-auto px-4 py-12">
         {newsletters.length > 0 ? (
@@ -100,6 +100,18 @@ export default async function Home() {
         ) : (
           <p className="text-muted-foreground">No newsletters available.</p>
         )}
+      </div>
+      
+      {/* Credit link at bottom right */}
+      <div className="absolute bottom-4 right-4">
+        <a 
+          href="https://github.com/iliane5/meridian" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-xs text-muted-foreground hover:text-foreground"
+        >
+          credit
+        </a>
       </div>
     </main>
   );

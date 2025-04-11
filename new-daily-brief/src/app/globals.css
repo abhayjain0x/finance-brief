@@ -12,7 +12,7 @@
     --muted: #eee8d5;      /* Base2 */
     --muted-foreground: #586e75; /* Base01 */
     --border: #93a1a1;     /* Base1 */
-    --highlight: rgba(181, 137, 0, 0.4); /* Yellow with transparency */
+    --highlight: rgba(255, 255, 0, 0.5); /* Pure yellow with transparency */
   }
 
   [data-theme="dark"] {
@@ -24,7 +24,7 @@
     --muted: #1a1a1a;      /* Very dark gray */
     --muted-foreground: #b3b3b3; /* Light gray */
     --border: #4d4d4d;     /* Medium gray */
-    --highlight: rgba(255, 222, 89, 0.4); /* Yellow with transparency */
+    --highlight: rgba(255, 255, 0, 0.6); /* Pure yellow with transparency */
   }
 
   /* Text selection style */
