@@ -19,7 +19,7 @@ You are tasked with generating a personalized finance daily intelligence brief b
 
 Create a structured newsletter with these components:
 
-1. **Title:** Try to be creative here , based on your understanding of the news tie a clikable title of the newsletter
+1. **Title:** create a title for the brief. construct it using the main topics. it should be short/punchy/not clickbaity etc. make sure to not use "short text: longer text here for some reason" i HATE it, under no circumstance should there be colons in the title. make sure it's not too vague/generic either bc there might be many stories. maybe don't focus on like restituting what happened in the title, just do like the major entities/actors/things that happened. like "[person A], [thing 1], [org B] & [person O]" etc. try not to use verbs. state topics instead of stating topics + adding "shakes world order". always use lowercase.
 
 1. **Opening Summary:** Begin with a brief overview of the major market movements and key developments.
 
