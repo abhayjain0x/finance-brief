@@ -11,6 +11,7 @@
     --muted: #f8fafc;
     --muted-foreground: #64748b;
     --border: #e2e8f0;
+    --highlight: rgba(255, 222, 89, 0.6); /* Yellow highlight color */
   }
 
   [data-theme="dark"] {
@@ -21,6 +22,13 @@
     --muted: #1e293b;
     --muted-foreground: #94a3b8;
     --border: #334155;
+    --highlight: rgba(255, 222, 89, 0.4); /* Slightly transparent yellow for dark mode */
+  }
+
+  /* Text selection style */
+  ::selection {
+    background-color: var(--highlight);
+    color: var(--foreground);
   }
 }
 
