@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --primary: #0f172a;
+    --secondary: #64748b;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --border: #e2e8f0;
+  }
+
+  [data-theme="dark"] {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --primary: #cbd5e1;
+    --secondary: #94a3b8;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+  }
+}
+
+@layer components {
+  .top-nav {
+    @apply flex items-center justify-between py-4;
+  }
+
+  .nav-link {
+    @apply font-mono text-sm hover:opacity-80 transition-opacity;
+  }
+
+  .container {
+    @apply max-w-2xl mx-auto px-4;
+  }
+
+  .headline-container {
+    @apply space-y-2;
+  }
+
+  .date-text {
+    @apply font-mono;
+  }
+
+  .squiggly-underline {
+    @apply relative border-b border-current hover:opacity-80 transition-opacity;
+  }
+} 
