@@ -73,12 +73,42 @@ function markdownToHtml(markdown: string): string {
   return html;
 }
 
+// Find newsletter path
+function findNewsletterPath(slug: string): string | null {
+  // Try intelligence folder first (development)
+  let intelligenceDir = path.join(process.cwd(), '..', 'daily brief intelligence');
+  let intelligencePath = path.join(intelligenceDir, `newsletter_${slug}.md`);
+  
+  if (fs.existsSync(intelligencePath)) {
+    return intelligencePath;
+  }
+  
+  // Try public data folder (production)
+  let publicDataPath = path.join(process.cwd(), 'public', 'data', `newsletter_${slug}.md`);
+  if (fs.existsSync(publicDataPath)) {
+    return publicDataPath;
+  }
+  
+  return null;
+}
+
 // Get all available newsletter slugs
 export async function generateStaticParams() {
   try {
-    // For the deployed site, read from the public directory
-    const dataDir = path.join(process.cwd(), 'public', 'data');
-    const files = fs.readdirSync(dataDir);
+    // First try to read from the intelligence folder (dev environment)
+    let dirPath = path.join(process.cwd(), '..', 'daily brief intelligence');
+    
+    // Check if the intelligence folder exists
+    if (!fs.existsSync(dirPath)) {
+      // Fall back to public data (production build)
+      dirPath = path.join(process.cwd(), 'public', 'data');
+    }
+    
+    if (!fs.existsSync(dirPath)) {
+      return [];
+    }
+    
+    const files = fs.readdirSync(dirPath);
     
     return files
       .filter(file => file.startsWith('newsletter_') && file.endsWith('.md'))
@@ -94,10 +124,10 @@ export async function generateStaticParams() {
 // Get newsletter data
 async function getNewsletter(slug: string) {
   try {
-    // For the deployed site, read from the public directory
-    const filePath = path.join(process.cwd(), 'public', 'data', `newsletter_${slug}.md`);
+    // Find the newsletter file
+    const filePath = findNewsletterPath(slug);
     
-    if (!fs.existsSync(filePath)) {
+    if (!filePath) {
       return null;
     }
     
@@ -127,7 +157,7 @@ async function getNewsletter(slug: string) {
     
     return {
       slug,
-      title: title.split(": ")[1]?.replace(/"/g, '') || title,
+      title: title.includes(": ") ? title.split(": ")[1].replace(/"/g, '') : title,
       date: formattedDate,
       content: htmlContent
     };

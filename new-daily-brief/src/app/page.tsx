@@ -6,7 +6,19 @@ import NavBar from "@/components/nav-bar";
 // Function to get all available newsletters
 async function getNewsletters() {
   try {
-    const dirPath = path.join(process.cwd(), 'public', 'data');
+    // First try to read from the intelligence folder (dev environment)
+    let dirPath = path.join(process.cwd(), '..', 'daily brief intelligence');
+    
+    // Check if the intelligence folder exists
+    if (!fs.existsSync(dirPath)) {
+      // Fall back to public data (production build)
+      dirPath = path.join(process.cwd(), 'public', 'data');
+    }
+    
+    if (!fs.existsSync(dirPath)) {
+      return [];
+    }
+    
     const files = fs.readdirSync(dirPath);
     const newsletterFiles = files
       .filter(file => file.startsWith('newsletter_') && file.endsWith('.md'))
