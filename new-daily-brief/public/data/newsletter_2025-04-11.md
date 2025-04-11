@@ -1,4 +1,4 @@
-# india's market rally, dollar weakness, gold surge & trump's tariff drama
+### india's market rally, dollar weakness, gold surge & trump's tariff drama
 
 ## Market Overview
 
