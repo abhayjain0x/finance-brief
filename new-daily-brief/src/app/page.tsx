@@ -2,6 +2,12 @@ import Link from "next/link";
 import fs from 'fs';
 import path from 'path';
 import NavBar from "@/components/nav-bar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "All you need to know about today",
+};
 
 // Function to get all available newsletters
 async function getNewsletters() {
@@ -67,11 +73,6 @@ async function getNewsletters() {
     return [];
   }
 }
-
-export const metadata = {
-  title: 'Daily Brief Intelligence',
-  description: 'Daily market and financial intelligence',
-};
 
 export default async function Home() {
   const newsletters = await getNewsletters();

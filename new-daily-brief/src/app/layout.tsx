@@ -19,11 +19,26 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Daily Brief Intelligence",
-  description: "A daily intelligence brief on finance and markets",
+  metadataBase: new URL("https://daily-markets-briefs.netlify.app"),
+  title: {
+    default: "Home",
+    template: "%s | Markets Brief"
+  },
+  description: "All you need to know about today",
   icons: {
     icon: '/favicon.ico',
   },
+  openGraph: {
+    title: "Markets Brief",
+    description: "All you need to know about today",
+    type: "website",
+    siteName: "Markets Brief"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Markets Brief",
+    description: "All you need to know about today",
+  }
 };
 
 export default function RootLayout({

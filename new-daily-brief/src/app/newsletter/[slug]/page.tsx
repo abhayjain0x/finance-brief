@@ -140,7 +140,7 @@ async function getNewsletter(slug: string) {
     // Extract title - look for the first ### line after removing "THE DAILY BRIEF"
     const contentWithoutHeader = content.replace(/^# THE DAILY BRIEF\s*\n/, '');
     const titleMatch = contentWithoutHeader.match(/^### (.*?)(?:\n|$)/);
-    const title = titleMatch ? titleMatch[1] : 'Daily Brief Intelligence Newsletter';
+    const title = titleMatch ? titleMatch[1] : 'Markets Brief Newsletter';
     
     // Format date for display
     const dateParts = slug.split('-');
@@ -189,7 +189,18 @@ export async function generateMetadata({ params }: Params) {
   
   return {
     title: newsletter.title,
-    description: `Daily Brief Intelligence - ${newsletter.date}`
+    description: `Markets Brief - All you need to know about today`,
+    openGraph: {
+      title: newsletter.title,
+      description: `Markets Brief - All you need to know about today`,
+      type: 'article',
+      publishedTime: newsletter.date,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: newsletter.title,
+      description: `Markets Brief - All you need to know about today`,
+    }
   };
 }
 
