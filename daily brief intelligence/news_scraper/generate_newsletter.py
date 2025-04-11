@@ -41,6 +41,17 @@ def load_news_data(filename="news.json"):
         print(f"Error loading news data: {e}")
         return []
 
+def load_additional_text(filename="lul.txt"):
+    """Load the additional text data from lul.txt"""
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            text_data = f.read()
+        print(f"Loaded additional text data from {filename}")
+        return text_data
+    except Exception as e:
+        print(f"Error loading additional text data: {e} (This might be normal if file doesn't exist yet)")
+        return ""
+
 def load_prompt_template(filename="prompt.txt"):
     """Load the prompt template"""
     try:
@@ -65,6 +76,13 @@ def format_news_for_prompt(news_data):
     
     # Join all formatted news items into a single string
     return "\n".join(formatted_news)
+
+def format_combined_data(news_formatted, additional_text):
+    """Combine the formatted news data with the additional text data"""
+    if additional_text:
+        return f"{news_formatted}\n\n--- QUICK MARKET NEWS ---\n\n{additional_text}"
+    else:
+        return news_formatted
 
 def generate_newsletter(prompt, api_token):
     """Generate the newsletter using Replicate API and Claude 3.7 Sonnet"""
@@ -150,6 +168,9 @@ def main():
         print("No news data found. Exiting.")
         return
     
+    # Load additional text data
+    additional_text = load_additional_text()
+    
     # Load prompt template
     prompt_template = load_prompt_template()
     if not prompt_template:
@@ -159,8 +180,11 @@ def main():
     # Format news data
     formatted_news = format_news_for_prompt(news_data)
     
+    # Combine news data with additional text
+    combined_data = format_combined_data(formatted_news, additional_text)
+    
     # Replace placeholder in prompt
-    prompt = prompt_template.replace("{curated_news}", formatted_news)
+    prompt = prompt_template.replace("{curated_news}", combined_data)
     
     # Generate newsletter
     newsletter_content = generate_newsletter(prompt, api_token)

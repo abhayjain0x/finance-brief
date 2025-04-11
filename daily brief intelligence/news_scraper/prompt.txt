@@ -1,4 +1,4 @@
-hey, i have a bunch of finance news (in random order) derived from detailed analyses of news from the last 30h. could you give me daily markets intelligence brief? aim for something comprehensive yet engaging, roughly a 30-40 minute read.
+hey, i have a bunch of finance news & stock market updates (in random order) derived from detailed analyses of news from the last 30h. could you give me daily markets intelligence brief? aim for something comprehensive yet engaging, roughly a 30-40 minute read.
 
 some context: i built a system that collects/analyzes/compiles finance news because i was tired of mainstream news that either overwhelms with useless info or misses what actually matters. you're really good at information analysis/writing/etc so i figure by just asking you this i'd get something even better than what presidents get - a focused brief that tells me what's happening, why it matters, and what connections exist that others miss. i value **informed, analytical takes** – even if i don't agree with them, they're intellectually stimulating. i want analysis grounded in the facts provided, free from generic hedging or forced political correctness.
 
@@ -35,6 +35,8 @@ structure the brief using the sections below, making it feel conversational – 
      * Use **bold** for key specifics (names, places, numbers, orgs).
      * Use *italics* for important context or secondary details.
      * Make connections between related stories and identify broader patterns where relevant.
+
+4. **Results / order wins / any other quick updates and conclusion: ** here get all the quick overnight results , order updates or any other data worth mentioning here . you can use bullet points , lists or paragraphs too. try to be information dense.
 
 give me the brief i couldn't get before ai - one that combines human-like insight with superhuman information processing.
 
