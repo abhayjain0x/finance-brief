@@ -37,3 +37,6 @@ Thumbs.db
 ._* 
 # Local Netlify folder
 .netlify
+
+# Script with API keys
+start.sh
