@@ -6,15 +6,19 @@ import Link from 'next/link';
 
 // Helper function to convert markdown to HTML
 function markdownToHtml(markdown: string): string {
+  // Remove "THE DAILY BRIEF" header
+  const withoutHeader = markdown.replace(/^# THE DAILY BRIEF\s*\n/, '');
+  
   // Process headings
-  let html = markdown
-    .replace(/^# (.*?)$/gm, '<h1 class="text-3xl font-bold mb-6">$1</h1>')
+  let html = withoutHeader
     .replace(/^### (.*?)$/gm, '<h3 class="text-xl font-semibold mb-4">$1</h3>')
+    .replace(/^## (.*?)$/gm, '<h2 class="text-2xl font-semibold mb-4">$1</h2>')
+    .replace(/^# (.*?)$/gm, '<h1 class="text-3xl font-bold mb-6">$1</h1>')
     .replace(/^#### (.*?)$/gm, '<h4 class="text-lg font-semibold mb-3">$1</h4>')
     .replace(/^##### (.*?)$/gm, '<h5 class="text-base font-semibold mb-2">$1</h5>');
 
   // Process paragraphs (ensure they're wrapped)
-  html = html.replace(/^(?!(#|<h|<ul|<ol|<li|<blockquote|<pre|<code|$))(.+)$/gm, '<p class="mb-4">$2</p>');
+  html = html.replace(/^(?!(#|<h|<ul|<ol|<li|<blockquote|<pre|<code|$|---))(.+)$/gm, '<p class="mb-4">$2</p>');
 
   // Process lists
   html = html.replace(/^(\s*)-\s*(.*?)$/gm, '<li class="ml-6 mb-1 list-disc">$2</li>');
@@ -53,6 +57,9 @@ function markdownToHtml(markdown: string): string {
 
   // Process horizontal rules
   html = html.replace(/^---$/gm, '<hr class="my-8 border-muted" />');
+
+  // Process underline tags
+  html = html.replace(/<u>(.*?)<\/u>/g, '<span class="underline">$1</span>');
 
   // Process bold text
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -96,8 +103,9 @@ async function getNewsletter(slug: string) {
     
     const content = fs.readFileSync(filePath, 'utf8');
     
-    // Extract title
-    const titleMatch = content.match(/^# THE DAILY BRIEF\s*\n### (.*?)(?:\n|$)/);
+    // Extract title - look for the first ### line after removing "THE DAILY BRIEF"
+    const contentWithoutHeader = content.replace(/^# THE DAILY BRIEF\s*\n/, '');
+    const titleMatch = contentWithoutHeader.match(/^### (.*?)(?:\n|$)/);
     const title = titleMatch ? titleMatch[1] : 'Daily Brief Intelligence Newsletter';
     
     // Format date for display
@@ -170,7 +178,7 @@ export default async function NewsletterPage({ params }: Params) {
         <p className="text-sm text-muted-foreground mb-8 date-text">{newsletter.date}</p>
         
         <div 
-          className="prose prose-stone dark:prose-invert max-w-none"
+          className="prose prose-stone dark:prose-invert max-w-none font-mono text-sm"
           dangerouslySetInnerHTML={{ __html: newsletter.content }} 
         />
       </div>

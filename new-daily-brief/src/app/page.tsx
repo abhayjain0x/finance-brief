@@ -18,8 +18,9 @@ async function getNewsletters() {
         const filePath = path.join(dirPath, file);
         const content = fs.readFileSync(filePath, 'utf8');
         
-        // Extract title
-        const titleMatch = content.match(/^# THE DAILY BRIEF\s*\n### (.*?)(?:\n|$)/);
+        // Extract title - look for the first ### line after removing "THE DAILY BRIEF"
+        const contentWithoutHeader = content.replace(/^# THE DAILY BRIEF\s*\n/, '');
+        const titleMatch = contentWithoutHeader.match(/^### (.*?)(?:\n|$)/);
         const title = titleMatch ? titleMatch[1] : 'Daily Brief Intelligence Newsletter';
         
         // Format date for display
@@ -35,14 +36,14 @@ async function getNewsletters() {
           
           return {
             slug,
-            title: title.split(": ")[1]?.replace(/"/g, '') || title,
+            title: title.includes(": ") ? title.split(": ")[1].replace(/"/g, '') : title,
             date: formattedDate
           };
         }
         
         return {
           slug,
-          title: title.split(": ")[1]?.replace(/"/g, '') || title,
+          title: title.includes(": ") ? title.split(": ")[1].replace(/"/g, '') : title,
           date: slug.toLowerCase()
         };
       })
