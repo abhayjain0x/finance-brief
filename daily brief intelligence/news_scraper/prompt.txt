@@ -36,8 +36,6 @@ Create a structured newsletter with these components:
      * Use *italics* for important context or secondary details.
      * Make connections between related stories and identify broader patterns where relevant.
 
-3. **Market Outlook:** Conclude with a forward-looking perspective that ties together the major themes.
-
 **--- FINAL INSTRUCTIONS ---**
 
 *   Use complete sentences and standard capitalization/grammar.
