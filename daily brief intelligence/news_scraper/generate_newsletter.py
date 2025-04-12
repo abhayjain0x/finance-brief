@@ -80,7 +80,7 @@ def format_news_for_prompt(news_data):
 def format_combined_data(news_formatted, additional_text):
     """Combine the formatted news data with the additional text data"""
     if additional_text:
-        return f"{news_formatted}\n\n--- QUICK MARKET NEWS ---\n\n{additional_text}"
+        return f"{news_formatted}\n\n--- INDIAN MARKET NEWS ---\n\n{additional_text}"
     else:
         return news_formatted
 

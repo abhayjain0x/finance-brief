@@ -8,6 +8,7 @@ your job: go through all the curated news data i've gathered below. analyze **ev
 - important developments flying under the radar
 - how separate events might be related
 - genuinely interesting or impactful stories
+- read the whole news set first , then try to make connections, making it highest value per word newsletter
 
 **--- CURATED NEWS DATA (Source Material) ---**
 
@@ -35,8 +36,10 @@ structure the brief using the sections below, making it feel conversational – 
      * Use **bold** for key specifics (names, places, numbers, orgs).
      * Use *italics* for important context or secondary details.
      * Make connections between related stories and identify broader patterns where relevant.
+     * try to incorporate every news into our brief , making connections and making it highest value per word
+     * don't try to add much fluff like "here's why it's interesting" or "timing of this" . don't focus much on generic writing
 
-4. **Results / order wins / any other quick updates and conclusion: ** here get all the quick overnight results , order updates or any other data worth mentioning here . you can use bullet points , lists or paragraphs too. try to be information dense.
+4. **quick snippets and conclusion: ** here get all the quick overnight results , order updates or any other data worth mentioning here . you can use bullet points , lists or paragraphs too. try to be information dense.
 
 give me the brief i couldn't get before ai - one that combines human-like insight with superhuman information processing.
 

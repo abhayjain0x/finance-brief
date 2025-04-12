@@ -71,6 +71,9 @@ def get_summary(url, max_retries=3):
                 except Exception as e:
                     print(f"  Error parsing JSON response: {e}")
                     return "Summary unavailable - JSON parsing error"
+            elif response.status_code == 500:  # Server Error
+                print(f"  Server Error (500) for URL: {url}")
+                return "SKIP_THIS_ITEM_500_ERROR"
             elif response.status_code == 429:  # Too Many Requests
                 retry_delay = min(2 ** retry_count, 60)  # Exponential backoff
                 print(f"  Rate limit exceeded. Waiting {retry_delay} seconds before retry.")
@@ -97,6 +100,7 @@ def process_news_one_by_one(news_json_file="news.json"):
     
     # Track which articles have been processed
     processed_count = 0
+    skipped_items = []
     
     for i, item in enumerate(news_data):
         # Check if this item already has a summary
@@ -119,6 +123,12 @@ def process_news_one_by_one(news_json_file="news.json"):
         # Get summary
         summary = get_summary(url)
         
+        # Check if we should skip this item due to 500 error
+        if summary == "SKIP_THIS_ITEM_500_ERROR":
+            print(f"  Skipping item due to 500 error: {title}")
+            skipped_items.append(i)
+            continue
+        
         # Remove time field and add summary
         if "time" in item:
             del item["time"]
@@ -139,6 +149,17 @@ def process_news_one_by_one(news_json_file="news.json"):
         else:
             # Small delay between requests
             time.sleep(3)
+    
+    # Remove skipped items from the news data (in reverse order to avoid index issues)
+    for index in sorted(skipped_items, reverse=True):
+        print(f"Removing item at index {index} due to 500 error")
+        if index < len(news_data):
+            del news_data[index]
+    
+    # Save final version after removing skipped items
+    if skipped_items:
+        save_news_json(news_data, news_json_file)
+        print(f"Removed {len(skipped_items)} items with 500 errors from news data")
     
     print(f"Completed processing all {processed_count} news items.")
 
