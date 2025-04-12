@@ -1,6 +1,6 @@
 # THE DAILY BRIEF
 
-### # us-china trade tensions, rbis liquidity push, record gold prices & tech landscape shifts
+###  us-china trade tensions, rbis liquidity push, record gold prices & tech landscape shifts
 
 ## what matters now
 
