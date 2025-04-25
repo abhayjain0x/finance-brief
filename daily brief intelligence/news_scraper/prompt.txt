@@ -30,7 +30,7 @@ structure the brief using the sections below, making it feel conversational – 
      <u>**Title that captures the essence**</u>
      ```
    * **Write the Content:**
-     * Address what happened, why it matters (significance, implications), key context, and your analytical take in natural, flowing prose.
+     * Address what happened, key context, and your analytical take in natural, flowing prose.
      * **Use multiple, distinct paragraphs to improve readability.** Separate distinct ideas with paragraph breaks.
      * Blend facts and analysis naturally. If there isn't much significant development for a specific story, keep its section concise.
      * Use **bold** for key specifics (names, places, numbers, orgs).
